@@ -22,4 +22,22 @@ class customerController {
             echo "Customer saved successfully!";
         }
     }
+
+    public function getAllCustomers() {
+        include "../config/db-connect.php";
+
+        try {
+            $sql = "SELECT * FROM customer";
+            $stmt = $con->query($sql);
+
+            $customers = $stmt->fetch_all(MYSQLI_ASSOC);
+            $con->close();
+
+            return $customers;
+        } catch(mysqli_sql_exception $e) {
+
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
 }

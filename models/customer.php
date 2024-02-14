@@ -1,7 +1,5 @@
 <?php
 
-include "../config/db-connect.php";
-
 class customer {
 
     private $nic;
@@ -60,11 +58,9 @@ class customer {
     }
 
  public function save() {
-    // Include database connection
     include "../config/db-connect.php";
 
     try {
-        // Prepare SQL statement with question mark placeholders
         $sql = "INSERT INTO customer (nic, name, age, address, salary) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $con->prepare($sql);
@@ -82,6 +78,8 @@ class customer {
         echo "Error: " . $e->getMessage();
     }
 }
+
+
 
 
 }
