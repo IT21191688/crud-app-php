@@ -1,7 +1,6 @@
 <?php
 
 class customer {
-
     private $nic;
     private $name;
     private $age;
@@ -16,6 +15,7 @@ class customer {
         $this->salary = $salary;
     }
 
+    // Getters
     public function getNIC() {
         return $this->nic;
     }
@@ -57,31 +57,21 @@ class customer {
         $this->salary = $salary;
     }
 
- public function save() {
-    include "../config/db-connect.php";
+    public function save() {
+        include "../config/db-connect.php";
 
-    try {
-        $sql = "INSERT INTO customer (nic, name, age, address, salary) 
-                VALUES (?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($sql);
-
-        $stmt->bind_param('ssiss', $this->nic, $this->name, $this->age, $this->address, $this->salary);
-
-        $stmt->execute();
-    
-        $stmt->close();
-        
-        $con->close();
-        
-        echo "Success Saved"; // Optionally, display a success message
-    } catch(mysqli_sql_exception $e) {
-        echo "Error: " . $e->getMessage();
+        try {
+            $sql = "INSERT INTO customer (nic, name, age, address, salary) 
+                    VALUES (?, ?, ?, ?, ?)";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('ssiss', $this->nic, $this->name, $this->age, $this->address, $this->salary);
+            $stmt->execute();
+            $stmt->close();
+            $con->close();
+            echo "Success Saved"; // Optionally, display a success message
+        } catch(mysqli_sql_exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 }
-
-
-
-
-}
 ?>
-

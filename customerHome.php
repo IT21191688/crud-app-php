@@ -12,7 +12,7 @@
     <div class="container">
         <h1 class="mt-4 text-center">Customer Dashboard</h1>
         <table class="table mt-5">
-            <button class="btn btn-success float-right">Add New Customer</button>
+            <a href="customerView.php" class="btn btn-success float-right" >Add New Customer</a>
             <thead class="thead-dark mt-3">
                 <tr>
                     <th scope="col">NIC</th>
@@ -48,8 +48,8 @@
                                 '<td>' + customer.address + '</td>' +
                                 '<td>' + customer.salary + '</td>' +
                                 '<td>' +
-                                '<a href="edit.php?id=' + customer.id + '" class="btn btn-primary btn-sm mr-2">Edit</a>' + // Adjusted the ID key
-                                '<a href="delete.php?id=' + customer.id + '" class="btn btn-danger btn-sm">Delete</a>' +
+                                '<a href="customerUpdate.php?id=' + customer.nic + '" class="btn btn-primary btn-sm mr-2">Edit</a>' + // Adjusted the ID key
+                                '<a href="delete.php?id=' + customer.nic + '" class="btn btn-danger btn-sm">Delete</a>' +
                                 '</td>' +
                                 '</tr>';
                             $('#customerData').append(row);
