@@ -3,8 +3,6 @@
 include "../models/customer.php";
 
 class customerController {
-
-
     public function customerSave() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -19,11 +17,9 @@ class customerController {
 
             $customer->save();
 
-            echo"Success Saved";
-
-            // Redirect or render a success message
-            // header("Location: /success");
-            // echo "Customer saved successfully!";
+           // echo"Success Saved";
+            header("Location: /Home");
+            echo "Customer saved successfully!";
         }
     }
 }

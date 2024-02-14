@@ -69,16 +69,12 @@ class customer {
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $con->prepare($sql);
 
-        // Bind parameters
         $stmt->bind_param('ssiss', $this->nic, $this->name, $this->age, $this->address, $this->salary);
 
-        // Execute the query
         $stmt->execute();
-        
-        // Close statement
+    
         $stmt->close();
         
-        // Close connection
         $con->close();
         
         echo "Success Saved"; // Optionally, display a success message
