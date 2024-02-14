@@ -14,7 +14,7 @@ class customerController {
             $customer = new customer($nic, $name, $age, $address, $salary);
             $customer->save();
             
-            header("Location: /customerHome.php");
+            header("Location: /customer-crud/customerHome.php");
             echo "Customer saved successfully!";
         }
     }
@@ -67,6 +67,26 @@ class customerController {
     try {
         $stmt = $con->prepare("UPDATE customer SET name = ?, age = ?, address = ?, salary = ? WHERE nic = ?");
         $stmt->bind_param("ssssi", $name, $age, $address, $salary, $nic);
+        $stmt->execute();
+        $stmt->close();
+        $con->close();
+
+        return true; 
+    } catch (mysqli_sql_exception $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+public function deleteCustomer($nic) {
+    include "../config/db-connect.php";
+
+
+    //alert($nic);
+
+    try {
+        $stmt = $con->prepare("DELETE FROM customer WHERE nic = ?");
+        $stmt->bind_param("s", $nic); // Assuming 'nic' is a string, so use 's' for binding
         $stmt->execute();
         $stmt->close();
         $con->close();

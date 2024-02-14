@@ -10,7 +10,7 @@ $uri = basename($path);
 
 if ($uri === 'save-customer') {
     $controller->customerSave();
-} elseif ($uri === 'get-customers') {
+}elseif ($uri === 'get-customers') {
     $customers = $controller->getAllCustomers();
     if ($customers !== null) {
         header('Content-Type: application/json');  
@@ -18,7 +18,7 @@ if ($uri === 'save-customer') {
     } else {
         echo json_encode(['error' => 'Failed to retrieve customers']);
     }
-} elseif ($uri === 'get-customer') {
+}elseif ($uri === 'get-customer') {
     if (isset($_GET['id'])) {
         $customerData = $controller->getCustomerById($_GET['id']);
         if ($customerData !== null) {
@@ -30,8 +30,7 @@ if ($uri === 'save-customer') {
     } else {
         echo json_encode(['error' => 'Customer ID not provided']);
     }
-}
- elseif ($uri === 'update-customer') {
+}elseif ($uri === 'update-customer') {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nic = $_POST['NIC'];
         $name = $_POST['Name'];
@@ -48,7 +47,20 @@ if ($uri === 'save-customer') {
     } else {
         echo "Invalid request method!";
     }
-} else {
+}elseif ($uri === 'delete-customer') {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nic'])) {
+
+        print($_POST['nic']);
+        $success = $controller->deleteCustomer($_POST['nic']);
+        if ($success) {
+            echo "Customer deleted successfully!";
+        } else {
+            echo "Failed to delete customer!";
+        }
+    } else {
+        echo "Invalid request method or NIC not provided!";
+    }
+}else {
     http_response_code(404);
     echo "404 Not Found";
 }
