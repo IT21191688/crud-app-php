@@ -1,3 +1,28 @@
+
+<?php
+session_start();
+//include 'header.php';
+include './config/db-connect.php';
+
+if (isset($_POST['submit'])) {
+    $nic = mysqli_real_escape_string($con, $_POST['nic']);
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $age = mysqli_real_escape_string($con, $_POST['age']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
+    $salary = mysqli_real_escape_string($con, $_POST['salary']);
+
+    $sql = "INSERT INTO `customer` (nic, name,age, address, salary)
+            VALUES ('$nic', '$name','$age', '$address', '$salary')";
+
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        echo "Customer was Saved!";
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +34,10 @@
 <body>
 
 
-<form class="container col-md-6 border border-success mt-5 p-5">
-  <h2 class="mt-3 mb-3 text-primary text-center">Customer Form</h2>
+<form method="post" class="container col-md-6 border border-success mt-5 p-5">
+  <hr>
+  <h2 class="mt-3 mb-3 text-primary text-center font-weight-bold">Customer Form</h2>
+  <hr>
   <div class="form-group">
     <label for="NIC">NIC</label>
     <input type="text" class="form-control" id="NIC"  placeholder="Enter Nic" require>
@@ -34,20 +61,17 @@
 
   <div class="row ">
     <div class="col">
-        <button type="submit" class="mt-3 btn btn-primary col-md-12">Submit</button>
+        <button type="submit" class="mt-3 btn btn-primary col-md-12">Save Customer</button>
     </div>
 
     <div class="col">
-        <button type="submit" class="mt-3 btn btn-danger col-md-12">Cancel</button>
+        <button type="button" class="mt-3 btn btn-danger col-md-12">Cancel</button>
     </div>
   </div>
     
  
 </form>
 
-
-
-    
 
 
 
