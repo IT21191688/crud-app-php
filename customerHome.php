@@ -11,7 +11,7 @@
     <div class="container">
         <h1 class="mt-4 text-center">Customer Dashboard</h1>
         <table id="customerTable" class="table">
-            <a class="btn btn-success float-right mt-3 mb-3">ADD new Customer</a>
+            <a href="./customerView.php" class="btn btn-success float-right mt-3 mb-3">ADD new Customer</a>
             <thead>
                 <tr>
                     <th>NIC</th>
