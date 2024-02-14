@@ -1,28 +1,4 @@
 
-<?php
-session_start();
-//include 'header.php';
-include './config/db-connect.php';
-
-if (isset($_POST['submit'])) {
-    $nic = mysqli_real_escape_string($con, $_POST['nic']);
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-    $age = mysqli_real_escape_string($con, $_POST['age']);
-    $address = mysqli_real_escape_string($con, $_POST['address']);
-    $salary = mysqli_real_escape_string($con, $_POST['salary']);
-
-    $sql = "INSERT INTO `customer` (nic, name,age, address, salary)
-            VALUES ('$nic', '$name','$age', '$address', '$salary')";
-
-    $result = mysqli_query($con, $sql);
-    if ($result) {
-        echo "Customer was Saved!";
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,29 +10,29 @@ if (isset($_POST['submit'])) {
 <body>
 
 
-<form method="post" class="container col-md-6 border border-success mt-5 p-5">
+<form method="post" action="./routes/customerRoute.php/save-customer" class="container col-md-6 border border-success mt-5 p-5">
   <hr>
   <h2 class="mt-3 mb-3 text-primary text-center font-weight-bold">Customer Form</h2>
   <hr>
   <div class="form-group">
     <label for="NIC">NIC</label>
-    <input type="text" class="form-control" id="NIC"  placeholder="Enter Nic" require>
+    <input type="text" class="form-control" id="NIC" name="NIC"  placeholder="Enter Nic" require>
   </div>
   <div class="form-group">
     <label for="Name">Name</label>
-    <input type="text" class="form-control" id="Name"  placeholder="Enter Name" require>
+    <input type="text" class="form-control" id="Name" name="Name"  placeholder="Enter Name" require>
   </div>
   <div class="form-group">
     <label for="Age">Age</label>
-    <input type="text" class="form-control" id="Age"  placeholder="Enter Age" require>
+    <input type="text" class="form-control" id="Age" name="Age"  placeholder="Enter Age" require>
   </div>
   <div class="form-group">
     <label for="Address">Address</label>
-    <input type="text" class="form-control" id="Address"  placeholder="Enter Address" require>
+    <input type="text" class="form-control" id="Address" name="Address"  placeholder="Enter Address" require>
   </div>
   <div class="form-group">
     <label for="Salary">Salary</label>
-    <input type="text" class="form-control" id="Salary"  placeholder="Enter Salary" require>
+    <input type="text" class="form-control" id="Salary" name="Salary"  placeholder="Enter Salary" require>
   </div>
 
   <div class="row ">

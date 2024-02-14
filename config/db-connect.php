@@ -10,6 +10,4 @@ $con = new mysqli($servername, $username, $password, $dbname); //Creating connec
 if($con -> connect_error){ //Checking whether the database is connected successfully
     die("Connection error : " .$con -> connect_error);
 }
-
-
 ?>
